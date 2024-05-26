@@ -5,8 +5,12 @@ import { nanoid } from 'nanoid';
 import css from './QuizForm.module.css';
 
 const ContactSchema = Yup.object().shape({
-    name: Yup.string().min(3, 'Too short!').max(50, 'Too long!').required('Required'),
-    number: Yup.string().min(9, 'Too short!').max(12, 'Too long!').required('Required'),
+    title: Yup.string().min(3, 'Too short!').max(50, 'Too long!').required('Required'),
+    questions: Yup.string().min(9, 'Too short!').max(12, 'Too long!').required('Required'),
+    answerA: Yup.string().min(1, 'Too short!').max(50, 'Too long!').required('Required'),
+    answerB: Yup.string().min(1, 'Too short!').max(50, 'Too long!').required('Required'),
+    answerC: Yup.string().min(1, 'Too short!').max(50, 'Too long!').required('Required'),
+    answerD: Yup.string().min(1, 'Too short!').max(50, 'Too long!').required('Required'),
 });
 
 const initialValues = {
