@@ -10,11 +10,15 @@ const ContactSchema = Yup.object().shape({
 });
 
 const initialValues = {
-    name: '',
-    number: '',
+    title: '',
+    questions: '',
+    answerA: '',
+    answerB: '',
+    answerC: '',
+    answerD: '',
 };
 
-export default function QuizForm({ onContact }) {
+export default function QuizForm({ onNewQuiz }) {
     const quizTitleId = useId();
     const questionsId = useId();
     const answerIdA = useId();
@@ -22,8 +26,8 @@ export default function QuizForm({ onContact }) {
     const answerIdC = useId();
     const answerIdD = useId();
 
-    const handleSubmit = ({ name, number }, actions) => {
-        onContact({ id: nanoid(), name, number });
+    const handleSubmit = ({ title, questions, answerA, answerB, answerC, answerD }, actions) => {
+        onNewQuiz({ id: nanoid(), title, questions, answerA, answerB, answerC, answerD });
         actions.resetForm();
     };
 
@@ -38,43 +42,43 @@ export default function QuizForm({ onContact }) {
                     <label htmlFor={quizTitleId} className={css.label}>
                         Quiz Title
                     </label>
-                    <Field name="name" id={quizTitleId} className={css.field} />
-                    <ErrorMessage name="name" component="span" className={css.error} />
+                    <Field name="title" id={quizTitleId} className={css.field} />
+                    <ErrorMessage name="title" component="span" className={css.error} />
                 </div>
                 <div className={css.box}>
                     <label htmlFor={questionsId} className={css.label}>
                         Questions
                     </label>
-                    <Field name="number" id={questionsId} className={css.field} />
-                    <ErrorMessage name="number" component="span" className={css.error} />
+                    <Field name="questions" id={questionsId} className={css.field} />
+                    <ErrorMessage name="questions" component="span" className={css.error} />
                 </div>
                 <div className={css.box}>
                     <label htmlFor={answerIdA} className={css.label}>
                         Answer option A
                     </label>
-                    <Field name="number" id={answerIdA} className={css.field} />
-                    <ErrorMessage name="number" component="span" className={css.error} />
+                    <Field name="answerA" id={answerIdA} className={css.field} />
+                    <ErrorMessage name="answerA" component="span" className={css.error} />
                 </div>
                 <div className={css.box}>
                     <label htmlFor={answerIdB} className={css.label}>
                         Answer option B
                     </label>
-                    <Field name="number" id={answerIdB} className={css.field} />
-                    <ErrorMessage name="number" component="span" className={css.error} />
+                    <Field name="answerB" id={answerIdB} className={css.field} />
+                    <ErrorMessage name="answerB" component="span" className={css.error} />
                 </div>
                 <div className={css.box}>
                     <label htmlFor={answerIdC} className={css.label}>
                         Answer option C
                     </label>
-                    <Field name="number" id={answerIdC} className={css.field} />
-                    <ErrorMessage name="number" component="span" className={css.error} />
+                    <Field name="answerC" id={answerIdC} className={css.field} />
+                    <ErrorMessage name="answerC" component="span" className={css.error} />
                 </div>
                 <div className={css.box}>
                     <label htmlFor={answerIdD} className={css.label}>
                         Answer option D
                     </label>
-                    <Field name="number" id={answerIdD} className={css.field} />
-                    <ErrorMessage name="number" component="span" className={css.error} />
+                    <Field name="answerD" id={answerIdD} className={css.field} />
+                    <ErrorMessage name="answerD" component="span" className={css.error} />
                 </div>
                 <button className={css.button} type="submit">
                     Add Questions
