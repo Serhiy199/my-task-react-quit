@@ -2,24 +2,29 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 import { Routes, Route } from 'react-router-dom';
-import { arrQuiz } from './assets/data';
+import { arrQuiz } from './assets/DataQuiz';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './page/Home/HomePage';
 import QuizQuestions from './page/QuizQuestions/QuizQuestions';
+import SearchBox from './components/SearchBox/SearchBox';
 
 function App() {
     const [arrQuizQuestions, setArrQuizQuestions] = useState(() => {
         const savedQuiz = window.localStorage.getItem('saved-quiz');
         return savedQuiz !== null ? JSON.parse(savedQuiz) : arrQuiz;
     });
-    // const [arrQuizQuestions, setArrQuizQuestions] = useState(arrQuiz);
-    const [filterQuiz, setFilterQuiz] = useState(null);
+
+    const [filterQuiz, setFilterQuiz] = useState('');
 
     const selectedQuiz = quizId => {
         return setFilterQuiz(quizId);
     };
 
     const findQuiz = arrQuizQuestions.find(quiz => quiz.id === filterQuiz);
+
+    const visibleQuiz = arrQuizQuestions.filter(quiz =>
+        quiz.title.toLowerCase().includes(filterQuiz.toLowerCase())
+    );
 
     const deleteQuiz = contactId => {
         setArrQuizQuestions(prevQuiz => {
@@ -34,12 +39,13 @@ function App() {
     return (
         <>
             <Navigation />
+            <SearchBox value={filterQuiz} onFilterContacts={setFilterQuiz} />
             <Routes>
                 <Route
                     path="/"
                     element={
                         <HomePage
-                            onListQuiz={arrQuizQuestions}
+                            onListQuiz={visibleQuiz}
                             onDelete={deleteQuiz}
                             onQuizId={selectedQuiz}
                         />

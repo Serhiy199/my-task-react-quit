@@ -5,7 +5,7 @@ export default function SearchBox({ value, onFilterContacts }) {
     return (
         <div className={css.box}>
             <label htmlFor={searchBoxId} className={css.text}>
-                Find contacts by name
+                Find quiz by title
             </label>
             <input
                 className={css.input}
