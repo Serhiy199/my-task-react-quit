@@ -12,7 +12,7 @@ export default function Navigation() {
                     List Quiz
                 </NavLink>
                 <NavLink className={buildLinkClass} to="/form">
-                    Create Quiz
+                    Create quiz
                 </NavLink>
             </nav>
         </header>
