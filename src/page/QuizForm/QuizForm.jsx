@@ -14,7 +14,7 @@ const initialValues = {
     number: '',
 };
 
-export default function ContactForm({ onContact }) {
+export default function QuizForm({ onContact }) {
     const usernNameId = useId();
     const numberId = useId();
 
