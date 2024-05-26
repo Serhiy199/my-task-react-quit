@@ -1,10 +1,10 @@
-import { arrQuiz } from '../../assets/data';
 import QuizList from '../../components/QuizList/QuizList';
 
-export default function HomePage({ onQuizId, onDelete }) {
+export default function HomePage({ onListQuiz, onQuizId, onDelete }) {
+    console.log(onListQuiz);
     return (
         <>
-            <QuizList onDelete={onDelete} onQuizId={onQuizId} onArrQuestions={arrQuiz} />;
+            <QuizList onDelete={onDelete} onQuizId={onQuizId} onListQuiz={onListQuiz} />;
         </>
     );
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 import { Routes, Route } from 'react-router-dom';
@@ -8,7 +8,11 @@ import HomePage from './page/Home/HomePage';
 import QuizQuestions from './page/QuizQuestions/QuizQuestions';
 
 function App() {
-    const [arrQuizQuestions, setArrQuizQuestions] = useState(arrQuiz);
+    const [arrQuizQuestions, setArrQuizQuestions] = useState(() => {
+        const savedQuiz = window.localStorage.getItem('saved-quiz');
+        return savedQuiz !== null ? JSON.parse(savedQuiz) : arrQuiz;
+    });
+    // const [arrQuizQuestions, setArrQuizQuestions] = useState(arrQuiz);
     const [filterQuiz, setFilterQuiz] = useState(null);
 
     const selectedQuiz = quizId => {
@@ -23,7 +27,9 @@ function App() {
         });
     };
 
-    console.log(arrQuizQuestions);
+    useEffect(() => {
+        localStorage.setItem('saved-quiz', JSON.stringify(arrQuizQuestions));
+    }, [arrQuizQuestions]);
 
     return (
         <>
@@ -31,12 +37,15 @@ function App() {
             <Routes>
                 <Route
                     path="/"
-                    element={<HomePage onDelete={deleteQuiz} onQuizId={selectedQuiz} />}
+                    element={
+                        <HomePage
+                            onListQuiz={arrQuizQuestions}
+                            onDelete={deleteQuiz}
+                            onQuizId={selectedQuiz}
+                        />
+                    }
                 />
-                <Route
-                    path="/quiz/:quizId"
-                    element={<QuizQuestions onSelectedQuiz={findQuiz} />}
-                ></Route>
+                <Route path="/quiz/:quizId" element={<QuizQuestions onSelectedQuiz={findQuiz} />} />
             </Routes>
         </>
     );
