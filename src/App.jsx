@@ -16,7 +16,6 @@ function App() {
     });
 
     const [filterQuiz, setFilterQuiz] = useState('');
-
     const [filterQuizById, setFilterQuizById] = useState('');
 
     const selectedQuiz = quizId => {

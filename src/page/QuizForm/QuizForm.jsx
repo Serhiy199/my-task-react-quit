@@ -15,8 +15,12 @@ const initialValues = {
 };
 
 export default function QuizForm({ onContact }) {
-    const usernNameId = useId();
-    const numberId = useId();
+    const quizTitleId = useId();
+    const questionsId = useId();
+    const answerIdA = useId();
+    const answerIdB = useId();
+    const answerIdC = useId();
+    const answerIdD = useId();
 
     const handleSubmit = ({ name, number }, actions) => {
         onContact({ id: nanoid(), name, number });
@@ -31,21 +35,49 @@ export default function QuizForm({ onContact }) {
         >
             <Form className={css.form}>
                 <div className={css.box}>
-                    <label htmlFor={usernNameId} className={css.label}>
-                        Name
+                    <label htmlFor={quizTitleId} className={css.label}>
+                        Quiz Title
                     </label>
-                    <Field name="name" id={usernNameId} className={css.field} />
+                    <Field name="name" id={quizTitleId} className={css.field} />
                     <ErrorMessage name="name" component="span" className={css.error} />
                 </div>
                 <div className={css.box}>
-                    <label htmlFor={numberId} className={css.label}>
-                        Number
+                    <label htmlFor={questionsId} className={css.label}>
+                        Questions
                     </label>
-                    <Field type="number" name="number" id={numberId} className={css.field} />
+                    <Field name="number" id={questionsId} className={css.field} />
+                    <ErrorMessage name="number" component="span" className={css.error} />
+                </div>
+                <div className={css.box}>
+                    <label htmlFor={answerIdA} className={css.label}>
+                        Answer option A
+                    </label>
+                    <Field name="number" id={answerIdA} className={css.field} />
+                    <ErrorMessage name="number" component="span" className={css.error} />
+                </div>
+                <div className={css.box}>
+                    <label htmlFor={answerIdB} className={css.label}>
+                        Answer option B
+                    </label>
+                    <Field name="number" id={answerIdB} className={css.field} />
+                    <ErrorMessage name="number" component="span" className={css.error} />
+                </div>
+                <div className={css.box}>
+                    <label htmlFor={answerIdC} className={css.label}>
+                        Answer option C
+                    </label>
+                    <Field name="number" id={answerIdC} className={css.field} />
+                    <ErrorMessage name="number" component="span" className={css.error} />
+                </div>
+                <div className={css.box}>
+                    <label htmlFor={answerIdD} className={css.label}>
+                        Answer option D
+                    </label>
+                    <Field name="number" id={answerIdD} className={css.field} />
                     <ErrorMessage name="number" component="span" className={css.error} />
                 </div>
                 <button className={css.button} type="submit">
-                    Add contact
+                    Add Questions
                 </button>
             </Form>
         </Formik>
